@@ -27,7 +27,7 @@ ephemeral "aws_secretsmanager_secret_version" "db_master" {
   secret_id = data.aws_db_instance.example.master_user_secret[0].secret_arn
 }
 locals {
-  credentials = jsondecode(ephemeral.aws_secretsmanager_secret.db_master.secret_string)
+  credentials = jsondecode(ephemeral.aws_secretsmanager_secret_version.db_master.secret_string)
 }
 
 provider "postgresql" {
