@@ -5,8 +5,8 @@ terraform {
       version = "~> 1.24"
     }
     aws = {
-      source  = "app.terraform.io/radek-demo/aws"
-      version = "~> 5"
+      source  = "hashicorp/aws"
+      version = "~> 5.77"
     }
     random = {
       source  = "hashicorp/random"
@@ -23,7 +23,7 @@ data "aws_db_instance" "example" {
   db_instance_identifier = "testdbinstance"
 }
 
-ephemeral "aws_secretsmanager_secret" "db_master" {
+ephemeral "aws_secretsmanager_secret_version" "db_master" {
   secret_id = data.aws_db_instance.example.master_user_secret[0].secret_arn
 }
 locals {
